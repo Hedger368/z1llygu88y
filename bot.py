@@ -50,10 +50,6 @@ def z1ll1fy(m3zz4g3):
                 ch4r4ct3rr = "0"
             case "s":
                 ch4r4ct3rr = "z"
-            case ".":
-                ch4r4ct3rr = "!!"
-            case "!":
-                ch4r4ct3rr = "!!!!"
         z1ll1f13d = z1ll1f13d + ch4r4ct3rr
     z1ll1f13d = z1ll1f13d + " " + fl41r
     return(z1ll1f13d)
@@ -72,5 +68,25 @@ async def trans(msg):
     else:
         await msg.reply("y0u d1dn't r3ply t0 4nyth1ng... :p")
 
+@bot.command()
+async def sing(msg):
+    song = msg.message.content[7:].strip().lower()
+    print(song)
+    match song:
+        case "verity":
+            lyrics = """h3y, 1t'z m3, 1t'z v3r1ty!! ^_^
+4zk m3 4nyth1ng!!! :3
+1 kn0w, 4b0ut, 4 m1ll10n th1ngz!! >:3
+1'll d0 4nyth1ng!!!! XP"""
+        case "misery":
+            lyrics = """1 m1zz th4t k1nd 0f m1z3ry :3
+d4 k1nd wh3r3 y0u w3r3 n1c3 t0 m3h T_T
+but 0nly 1n d4 3v3n1ng z0 1 4zk 4m 1 juzt dr34m1ng!! :p"""
+        case "backrooms":
+            lyrics = """v3r1ty'z fr0m m1n3cr4ft!!! >:3
+h3 b3l0ngz t0 b4ckr00mz!!!! >_<"""
+        case _:
+            lyrics = "z0rry, 1 d0n't kn0w th4t z0ng... O_o"
+    await msg.reply(lyrics)
 
 bot.run(TOKEN)
