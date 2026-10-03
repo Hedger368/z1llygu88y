@@ -71,7 +71,6 @@ async def trans(msg):
 @bot.command()
 async def sing(msg):
     song = msg.message.content[7:].strip().lower()
-    print(song)
     match song:
         case "verity":
             lyrics = """h3y, 1t'z m3, 1t'z v3r1ty!! ^_^
@@ -86,11 +85,11 @@ but 0nly 1n d4 3v3n1ng z0 1 4zk 4m 1 juzt dr34m1ng!! :p"""
             lyrics = """v3r1ty'z fr0m m1n3cr4ft!!! >:3
 h3 b3l0ngz t0 b4ckr00mz!!!! >_<"""
         case "gubby":
-            """gu88y d1z, gu88y d4t! :3
-gubb3h s3rv3r, gubb3h l4n!! ^_^
+            lyrics = """gubb3h d1z, gubb3h d4t! :3
+gubb3h s3rv3r, gubb3h l4n!! >_<
 gubb3h w1f1, gubb3h r4m :p
 gubb3h zt34k, gubb3h h4m!! X3
-az14n gubb3h fr0m j4p4n, n0w 1'm gubb1n w1th my fr13ndz!! >_<
+az14n gubb3h fr0m j4p4n, n0w 1'm gubb1n w1th my fr13ndz!! >:3
 4ll d4 gubb13z g01ng h444m!!!!! X3"""
         case _:
             lyrics = "z0rry, 1 d0n't kn0w th4t z0ng... O_o"
