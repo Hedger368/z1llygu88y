@@ -27,6 +27,21 @@ async def on_ready():
             client.connect(notify_socket)
             client.sendall(b"READY=1")
 
+def check_for_word(message, index, word):
+    message = message.lower()
+    word = word.lower()
+    if index > len(message) - len(word):
+        return False
+    if message[index:index+len(word)] == word:
+        if index == len(message) - len(word):
+            return True
+        elif message[index+len(word)] in word_accepted_endings:
+            return True
+        else:
+            return False
+    else:
+        return False
+
 def z1ll1fy(m3zz4g3):
     z1ll1f13d = ""
     r4nd0m_numb3rr = randint(1, 15)
@@ -85,7 +100,20 @@ def z1ll1fy(m3zz4g3):
                 ch4r4ct3rr = "0"
             case "s":
                 ch4r4ct3rr = "z"
+        if check_for_word(m3zz4g3, i, "to"):
+            ch4r4ct3rr = "2"
+            i += 1
+        if check_for_word(m3zz4g3, i, "too"):
+            ch4r4ct3rr = "2"
+            i += 2
+        if check_for_word(m3zz4g3, i, "the"):
+            ch4r4ct3rr = "d4"
+            i += 2
+        if check_for_word(m3zz4g3, i, "gubby"):
+            ch4r4ct3rr = "gubb3h"
+            i += 4  
         z1ll1f13d = z1ll1f13d + ch4r4ct3rr
+
     z1ll1f13d = z1ll1f13d + " " + fl41r
     return(z1ll1f13d)
 
