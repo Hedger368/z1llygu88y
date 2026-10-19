@@ -1,0 +1,29 @@
+[Unit]
+Description=z1llygu88y Discord bot
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=notify
+NotifyAccess=main
+User=z1llygu88y
+Group=z1llygu88y
+StateDirectory=z1llygu88y
+WorkingDirectory=/var/lib/z1llygu88y
+EnvironmentFile=/etc/z1llygu88y.env
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/z1llygu88y/current/.venv/bin/python /opt/z1llygu88y/current/bot.py
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=60
+TimeoutStopSec=30
+KillSignal=SIGINT
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+
+[Install]
+WantedBy=multi-user.target

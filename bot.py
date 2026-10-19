@@ -1,8 +1,8 @@
 import os
+import socket
 import discord
 from random import randint
 from discord.ext import commands
-from discord import app_commands
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -12,6 +12,18 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 bot = commands.Bot(command_prefix="z!", intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user}", flush=True)
+    # Let systemd count a deployment as started only after Discord is ready.
+    notify_socket = os.getenv("NOTIFY_SOCKET")
+    if notify_socket:
+        if notify_socket.startswith("@"):
+            notify_socket = "\0" + notify_socket[1:]
+        with socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM) as client:
+            client.connect(notify_socket)
+            client.sendall(b"READY=1")
 
 def z1ll1fy(m3zz4g3):
     z1ll1f13d = ""
@@ -95,4 +107,7 @@ az14n gubb3h fr0m j4p4n, n0w 1'm gubb1n w1th my fr13ndz!! >:3
             lyrics = "z0rry, 1 d0n't kn0w th4t z0ng... O_o"
     await msg.reply(lyrics)
 
-bot.run(TOKEN)
+if __name__ == "__main__":
+    if not TOKEN:
+        raise SystemExit("Set DISCORD_TOKEN in the environment or a .env file.")
+    bot.run(TOKEN)
