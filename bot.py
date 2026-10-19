@@ -11,6 +11,8 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 intents = discord.Intents.default()
 intents.message_content = True
 
+word_accepted_endings = [" ", ".", ":", ";", ",", "?", "!", "-", "(", '"', "'", "}", "]", "~"]
+
 bot = commands.Bot(command_prefix="z!", intents=intents)
 
 @bot.event
@@ -27,7 +29,7 @@ async def on_ready():
 
 def z1ll1fy(m3zz4g3):
     z1ll1f13d = ""
-    r4nd0m_numb3rr = randint(1, 10)
+    r4nd0m_numb3rr = randint(1, 15)
     match r4nd0m_numb3rr:
         case 1:
             fl41r = ":3"
@@ -49,6 +51,27 @@ def z1ll1fy(m3zz4g3):
             fl41r = ":P"
         case 10:
             fl41r = ">:p"
+        case 11:
+            r4nd0m_numb3rr_2 = randint(1, 4)
+            match r4nd0m_numb3rr_2:
+                case 1:
+                    fl41r = "o_o"
+                case 2:
+                    fl41r = "o_O"
+                case 3:
+                    fl41r = "O_o"
+                case 4:
+                    fl41r = "O_O"
+        case 12:
+            fl41r = ";3"
+        case 13:
+            fl41r = "> ~ <"
+        case 14:
+            fl41r = "> - <"
+        case 15:
+            fl41r = "^ ~ ^"
+        case 15:
+            fl41r = "^ - ^"
     for i in range(len(m3zz4g3)):
         ch4r4ct3rr = m3zz4g3[i].lower()
         match ch4r4ct3rr:
