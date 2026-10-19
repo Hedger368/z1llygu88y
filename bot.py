@@ -27,7 +27,7 @@ async def on_ready():
             client.connect(notify_socket)
             client.sendall(b"READY=1")
 
-def check_for_word(message, index, word):
+def check_for_word(message, index, word, allow_s=False):
     message = message.lower()
     word = word.lower()
     if index > len(message) - len(word):
@@ -37,6 +37,13 @@ def check_for_word(message, index, word):
             return True
         elif message[index+len(word)] in word_accepted_endings:
             return True
+        elif allow_s and message[index+len(word)] == "s":
+            if index == (len(message) - len(word)) - 1:
+                return True
+            elif message[index+len(word)+1] in word_accepted_endings:
+                return True
+            else:
+                return False
         else:
             return False
     else:
@@ -87,7 +94,8 @@ def z1ll1fy(m3zz4g3):
             fl41r = "^ ~ ^"
         case 15:
             fl41r = "^ - ^"
-    for i in range(len(m3zz4g3)):
+    i = 0
+    while i < len(m3zz4g3):
         ch4r4ct3rr = m3zz4g3[i].lower()
         match ch4r4ct3rr:
             case "a":
@@ -109,10 +117,23 @@ def z1ll1fy(m3zz4g3):
         if check_for_word(m3zz4g3, i, "the"):
             ch4r4ct3rr = "d4"
             i += 2
-        if check_for_word(m3zz4g3, i, "gubby"):
+        if check_for_word(m3zz4g3, i, "gubby", True):
             ch4r4ct3rr = "gubb3h"
-            i += 4  
+            i += 4
+        if check_for_word(m3zz4g3, i, "that", True):
+            ch4r4ct3rr = "d4t"
+            i += 3
+        if check_for_word(m3zz4g3, i, "this", True):
+            ch4r4ct3rr = "d1z"
+            i += 3
+        if check_for_word(m3zz4g3, i, "baby", True):
+            ch4r4ct3rr = "b3b3h"
+            i += 3
+        if check_for_word(m3zz4g3, i, "what", True):
+            ch4r4ct3rr = "w4t"
+            i += 3          
         z1ll1f13d = z1ll1f13d + ch4r4ct3rr
+        i += 1
 
     z1ll1f13d = z1ll1f13d + " " + fl41r
     return(z1ll1f13d)
