@@ -175,6 +175,16 @@ gubb3h w1f1, gubb3h r4m :p
 gubb3h zt34k, gubb3h h4m!! X3
 az14n gubb3h fr0m j4p4n, n0w 1'm gubb1n w1th my fr13ndz!! >:3
 4ll d4 gubb13z g01ng h444m!!!!! X3"""
+        case "aura farmer":
+            lyrics = """d0, d0, d0- d0-d0-d0, d0, d0h, 4h!! :3
+d4 4ur4 f4rm3h (m3h!!! :p)
+d0, d0, d0- d0-d0-d0, d0h, d0h, 4h!!! o_O
+h3'z zuch 4 ch4rm3h ^_^"""
+        case "lord verity":
+            lyrics = """th3y c4ll m3h l0rd!!! v3r1t3h!! :D
+m4zt3r 0f hum4n1t3h!! >:3
+1 z41d l000rd!!! v3r1t3h!! ^_^
+c4ll m3h m4zt3r, m4zt3r, 0w!!! > ~ <"""
         case _:
             lyrics = "z0rry, 1 d0n't kn0w th4t z0ng... O_o"
     await msg.reply(lyrics)
