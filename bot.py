@@ -189,6 +189,38 @@ c4ll m3h m4zt3r, m4zt3r, 0w!!! > ~ <"""
             lyrics = "z0rry, 1 d0n't kn0w th4t z0ng... O_o"
     await msg.reply(lyrics)
 
+@bot.command()
+async def pet(msg):
+    choice = randint(1, 13)
+    match choice:
+        case 1:
+            reply = ":3"
+        case 2:
+            reply = "m3w :3"
+        case 3:
+            reply = "1 l1k3 g3tt1ng p3t ^_^"
+        case 4:
+            reply = "ny4h :3"
+        case 5:
+            reply = "th4nkz > ~ <"
+        case 6:
+            reply = "m30w :p"
+        case 7:
+            reply = "mrrp :3"
+        case 8:
+            reply = "m3w! >:3"
+        case 9:
+            reply = "th4nkz f0r d4 p3tz!! ^_^"
+        case 10:
+            reply = "my4h.. ;3"
+        case 11:
+            reply = "gubb3h l0v3z y0u!! <3 :D"
+        case 12:
+            reply = ":D"
+        case 13:
+            reply = "purrr :3"
+    await msg.reply(reply)
+
 if __name__ == "__main__":
     if not TOKEN:
         raise SystemExit("Set DISCORD_TOKEN in the environment or a .env file.")
