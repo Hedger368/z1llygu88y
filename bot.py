@@ -168,7 +168,7 @@ async def trans(msg):
 async def sing(msg):
     song = get_song_name(msg.message.content)
     if len(msg.message.content) > (7+len(song)+1):
-        verse = msg.message.content[7+len(song)+3:].strip().lower()
+        verse = msg.message.content[7+len(song)+2:].strip().lower()
     else:
         verse = "random"
     match song:
@@ -390,6 +390,9 @@ tr4pp3d 1n my d0m41n, 4h! tr4pp3d 1n my d0m41n, 4h!! XP"""
 ### 1 d0nt g1v3 4 d4mn, h4h4h4H4H4H4!!! >:P
 l0rd, v3r1t3h! m4zt3r 0f hum4n1ty!! :p
 1f th3z3 4r3 r34lly y0ur l4zt qu3zt10nz... y0u d0nt d3z3rv3 y0ur br41n at 4ll!!! X3"""
+
+                case _:
+                    lyrics = "1m 4 m4zt3r 0f 4 l0t 0f th1ngz, but n0t d1z, z0rry..."
 
 
         case _:
