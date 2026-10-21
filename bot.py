@@ -1,7 +1,7 @@
 import os
 import socket
 import discord
-from random import randint
+from random import randint, choice
 from discord.ext import commands
 from dotenv import load_dotenv
 
@@ -48,6 +48,15 @@ def check_for_word(message, index, word, allow_s=False):
             return False
     else:
         return False
+
+def get_song_name(message):
+    song = ""
+    for i in range(7, len(message)):
+        if message[i] != "+":
+            song = song + message[i]
+        else:
+            break
+    return song.strip()
 
 def z1ll1fy(m3zz4g3):
     z1ll1f13d = ""
@@ -131,7 +140,10 @@ def z1ll1fy(m3zz4g3):
             i += 3
         if check_for_word(m3zz4g3, i, "what", True):
             ch4r4ct3rr = "w4t"
-            i += 3          
+            i += 3 
+        if check_for_word(m3zz4g3, i, "me", True):
+            ch4r4ct3rr = "m3h"
+            i += 1           
         z1ll1f13d = z1ll1f13d + ch4r4ct3rr
         i += 1
 
@@ -154,39 +166,234 @@ async def trans(msg):
 
 @bot.command()
 async def sing(msg):
-    song = msg.message.content[7:].strip().lower()
+    song = get_song_name(msg.message.content)
+    if len(msg.message.content) > (7+len(song)+1):
+        verse = msg.message.content[7+len(song)+3:].strip().lower()
+    else:
+        verse = "random"
     match song:
+
+
         case "verity":
-            lyrics = """h3y, 1t'z m3, 1t'z v3r1ty!! ^_^
-4zk m3 4nyth1ng!!! :3
+
+            if verse == "random":
+                verse = choice(["chorus", "prechorus", "bridge", "verse 1", "verse 2"])
+            
+            match verse:
+                case "chorus":
+                    lyrics = """h3y, 1t'z m3h, 1t'z v3r1ty!! ^_^
+4zk m3h 4nyth1ng!!! :3
 1 kn0w, 4b0ut, 4 m1ll10n th1ngz!! >:3
 1'll d0 4nyth1ng!!!! XP"""
+
+                case "prechorus":
+                    lyrics = """d0 y0u l1v3 4l0n3?? 1z 4nyb0dy h0m3??? :3
+0n3 tw0 thr33 4nd z0, wh3r3 d1d 3v3ryb0dy g0???? o_O"""
+
+                case "bridge":
+                    lyrics = """c0m3... c0m3 cl0z3r... >:3
+c0m3 b3 my fr13nd! d0nt b3 z0 zc4red! ^_^
+L0V3 M3H!!! XP"""
+
+                case "verse 1":
+                    lyrics = """wh4tz d4 c4pit4l 0f fr4nc3?? O_o
+0h 0u1 0u1 0u1! 1t 1z p4r1z!! m3rc1!!!! :3
+0k4y... wh4t d03z d4 c0w z4y???? ^ - ^
+0h m00 m00 m00! 1 zp34k d4t t00! 4ll d4y!!! XP"""
+
+                case "verse 2":
+                    lyrics = """whyz d4 d00r l0ck3d up z0 t1ght?? T_T
+0h t33 h33 h33! n0 n33d t0 l34v3! st4y h3r3!!! >:3
+why d0 y0u kn0w wh3r3 1 zl33p??? > ~ <
+0h 1 juzt kn0w... 1 4lw4yz kn0w... 1m cl0z3!!! XD"""
+
+                case _:
+                    lyrics = """1 kn0w 4 l0t 0f v3r1tyz, but 1 d0n't kn0w d4t 0n3, z0rry..."""
+
+
         case "misery":
-            lyrics = """1 m1zz th4t k1nd 0f m1z3ry :3
-d4 k1nd wh3r3 y0u w3r3 n1c3 t0 m3h T_T
+
+            if verse == "random":
+                verse = choice(["chorus", "bridge", "verse 1", "verse 2", "chorus 2", "chorus 3", "chorus 4"])
+
+            match verse:
+
+                case "chorus":
+                    lyrics = """1 m1zz d4t k1nd 0f m1z3ry :3
+d4 k1nd wh3r3 y0u 4r3 n1c3 t0 m3h T_T
 but 0nly 1n d4 3v3n1ng z0 1 4zk 4m 1 juzt dr34m1ng!! :p"""
+
+                case "verse 1":
+                    lyrics = """1 l0v3 y0u z0 much d4t 1tz dr1pp1ng <3
+dr1pp1ng fr0m my 4rmz 4nd zuch :3
+1m z0rry 1 kn0w 1m t00 much T_T
+t0 l0v3, t0 truzt, 1m n0th1ng but </3"""
+
+                case "verse 2":
+                    lyrics = """y0u 4r3 wh4t 1 c0uld b3l13v3 1n z1nc3 1 h4v3 n0b0dy 3lz3 T-T
+1 k33p zcr34m1ng, 1 k33p br34th1ng, 1tz d4 l1v1ng 1 c4nt h3lp > - <
+1tz d4 m1z3ry d4t y0u c4n t3ll m3h h0w much d4t y0u c4r3 ^ - ^
+4nd 1 kn0w 1tz tru3 but y3t y0u n33d t0 g3t m3h 0ut y0ur h41r XP
+1z wh4t w3 h4v3 zp3c14l?? w4tz d4t m34n??? o_O
+why c4nt y0u ch00z3 m3h?? 1z 1t gr33d??? T-T
+d1z 1znt luzt, n0 f41ry duzt, 1tz blunt, 1tz wh4t y0u z33!! :3
+m1z3ry 1n kn0w1ng 1 l0v3 y0u 4nd h4d t0 l34v3 </3
+d4 m1z3ry d4t 1 c4nt zh4k3, d4 m1z3ry 1 bl33d... T-T"""
+
+                case "bridge":
+                    lyrics = """hurtz t0 f33l d4t k1nd 0f m1z3ry :3
+d4 k1nd wh3r3 y0u 4r3 n1c3 t0 m3h T_T
+but 0nly 1n d4 3v3n1ng z0 1 4zk 4m 1 juzt dr34m1ng!! :p
+h0w t0 h34l d4t k1nd 0f m1z3ry >:3
+d4 k1nd wh3r3 y0u 4r3 n1c3 t0 m3h </3
+but 0nly 1n d4 3v3n1ng z0 1 4zk 4m 1 juzt dr34m1ng!! XP"""
+
+                case "chorus 2":
+                    lyrics = """1 m1zz d4t k1nd 0f m1z3ry :3
+d4 k1nd wh3r3 y0u 4r3 n1c3 t0 m3h T_T
+but 0nly 1n d4 3v3n1ng z0 1 4zk 4m 1 juzt dr34m1ng!! :p
+but 1tz r34l, d4t k1nd 0f m1z3ry > ~ <
+d4 k1nd wh3r3 y0u 4r3 n1c3 t0 m3h ;3
+but 0nly 1n d4 3v3n1ng z0 1 4zk 4m 1 juzt dr34m1ng!! X3"""
+
+                case "chorus 3":
+                    lyrics = """1 m1zz d4t k1nd 0f m1z3ry :3
+d4 k1nd wh3r3 y0u 4r3 n1c3 t0 m3h T-T
+but 0nly 1n d4 3v3n1ng z0 1 4zk 4m 1 juzt dr34m1ng!! :p
+g0d 1 f33l d4t k1nd 0f m1z3ry T-T
+d4 k1nd wh3r3 y0u 4r3 n1c3 t0 m3h > - <
+but 0nly 1n d4 3v3n1ng... why 0nly 1n d4 3v3n1ng??? o_O"""
+
+                case "chorus 4":
+                    lyrics = """hurtz t0 f33l d4t k1nd 0f m1z3ry :3
+d4 k1nd wh3r3 y0u 4r3 n1c3 t0 m3h T_T
+but 0nly 1n d4 3v3n1ng z0 1 4zk 4m 1 juzt dr34m1ng!! :p
+h0w t0 h34l d4t k1nd 0f m1z3ry >:3
+d4 k1nd wh3r3 y0u 4r3 n1c3 t0 m3h </3
+d4 k1nd wh3r3 y0u 4r3 n1c3 t0 m3h T-T
+t0 h34l d4t k1nd 0f m1z3ry > - <
+d4 k1nd wh3r3 y0u 4r3 n1c3 t0 m3h ;3
+but 0nly 1n d4 3v3n1ng, z0 1 w1zh d4t 1 w4z dr34m1ng.. T-T
+but 0nly 1n d4 3v3n1ng... </3
+g0d, 1 w1zh d4t 1 w4z dr34m1ng... ^ - ^
+1 m1zz d4t k1nd 0f m1z3ry... :3
+"""
+
+                case _:
+                    lyrics = "1 m1zz d4t k1nd 0f m1z3ry, but 1 d0nt kn0w d4t k1nd 0f m1z3ry, z0rry..."
+
+
         case "backrooms":
+
             lyrics = """v3r1ty'z fr0m m1n3cr4ft!!! >:3
 h3 b3l0ngz t0 b4ckr00mz!!!! >_<"""
+
+
         case "gubby":
-            lyrics = """gubb3h d1z, gubb3h d4t! :3
+
+            if verse == "random":
+                verse = choice(["chorus", "verse 1"])
+
+            match verse:
+
+                case "chorus":
+                    lyrics = """gubb3h d1z, gubb3h d4t! :3
 gubb3h s3rv3r, gubb3h l4n!! >_<
 gubb3h w1f1, gubb3h r4m :p
 gubb3h zt34k, gubb3h h4m!! X3
 az14n gubb3h fr0m j4p4n, n0w 1'm gubb1n w1th my fr13ndz!! >:3
 4ll d4 gubb13z g01ng h444m!!!!! X3"""
+
+                case "verse":
+                    lyrics = '''"4r3 y0u 0k4y?" y3z 1 4m!! 1m m4k1ng gubb3h z0ngz!!!! :3
+l3tz d4nc3 w1th d4 b34t, 4nd r3p34t, d4 gubb3h z1ng 4l0ng!!! XP
+1f y0u d0nt 4gr33, y0u c4n l34v3, 1 w0nt br1ng y0u 4l0ng!! > ~ <
+d4tz why y0u c4n z33, 1ll d0 3v3ryth1ng f0r gubb3h n0w!!! :D'''
+
+                case _:
+                    lyrics = "1z d4t 4 gubb3h??? n0, z3r10uzly, 1 d0nt kn0w d4t 0n3, z0rry..."
+
+
         case "aura farmer":
-            lyrics = """d0, d0, d0- d0-d0-d0, d0, d0h, 4h!! :3
+
+            if verse == "random":
+                verse = choice(["chorus", "prechorus", "verse 1", "verse 2", "bridge"])
+
+            match verse:
+                case "chorus":
+                    lyrics = """d0, d0, d0- d0-d0-d0, d0, d0h, 4h!! :3
 d4 4ur4 f4rm3h (m3h!!! :p)
 d0, d0, d0- d0-d0-d0, d0h, d0h, 4h!!! o - O
 h3'z zuch 4 ch4rm3h ^_^"""
+
+                case "prechorus":
+                    lyrics = """l00k z0 fr3zh, g0d 1n fl3zh, 3v3ryb0dy 4t my f33t!! ;3
+zun l00kz d1m, n3xt t0 h1m, b4by f33l d4 h34t!!! XP"""
+
+                case "verse 1":
+                    lyrics = """w4k3 up 1n d4 m0rn1ng, 1m f33l1ng n0 ztr3zz!! ^ _ ^
+41nt g0t n0 w0rr13z, c4uz3 1 kn0w 1m d4 b3zt!! :p
+n0t 3v3n try1ng, 1 w4z b0rn l1k3 d1z!!! X3
+juzt f33l d4 4ur4, b4b3 g1v3 m3 4 k1zz!! <3"""
+
+                case "verse 2":
+                    lyrics = '''p4p4 4lw4yz t0ld m3h, "y0ur 4ur4 1z g0n3!!!!" T-T
+but th3n 1 r34l1z3d, 1 w4znt h1z z0n!! (1m 4 gubb3h :3)
+4nd wh3n 1m d0wn, 1 r3v1v3 myz3lf!! :p
+c4uz3 1n d4ng3r, n0b0dy c4n h3lp!!! X3'''
+
+                case "bridge":
+                    lyrics = """m4n... d03znt 1t zuck t0 b3 4l0n3?? ^ - ^
+t0 b3 4 l0z3r... 1 gu3zz 1ll n3v3r kn0w!!! :3
+F33L D4 ZUN!! (4ur4!) :D
+F33L D4 W1ND!!! (f4rm4h!) > ~ <
+F33L D4 BL00D 1N Y0UR V31NZ!!!!! (4ur4!) X3
+F33L D4 AUR4!!!!!!!!! XP"""
+
+                case _:
+                    lyrics = "1 h4v3 4 l0t 0f 4ur4, but 3v3n 1 d0nt kn0w w4t d4t 1z, z0rry..."
+                
+
         case "lord verity":
-            lyrics = """th3y c4ll m3h l0rd!!! v3r1t3h!! :D
+
+            if verse == "random":
+                verse = choice(["chorus", "verse 1", "verse 2", "bridge"])
+
+            match verse:
+                case "chorus":
+                    lyrics = """th3y c4ll m3h l0rd!!! v3r1t3h!! :D
 m4zt3r 0f hum4n1t3h!! >:3
 1 z41d l000rd!!! v3r1t3h!! ^_^
 c4ll m3h m4zt3r, m4zt3r, 0w!!! > ~ <"""
+
+                case "verse 1":
+                    lyrics = """kn33l, zt0p! > - <
+1 w4nt d1z th1ng t0 n3v3r, n3v3r 3nd!! :3
+n3v3r 3v3r 3nd, 4h! n3v3r 3v3r 3nd, 4h!! :p
+w41t, dr0p! 1 w4nn4 b3 y0ur 0n3 4nd 0nly fr13nd!!! ^ _ ^
+0n3 4nd 0nly fr13nd, 4h! 0n3 4nd 0nly fr13nd, 4h!! XP"""
+
+                case "verse 2":
+                    lyrics = """h3ll, n0!! ;3
+1 w1ll n0t 3v3r l3t y0u g0 4w4y!! > ~ <
+n3v3r g0 4w4y, 4h! n3v3r g0 4w4y, 4h!! :p
+n000w, y0u!! 4r3 tr4pp3d f0r3v3r, d1z 1z my d0m41n!! X3
+tr4pp3d 1n my d0m41n, 4h! tr4pp3d 1n my d0m41n, 4h!! XP"""
+
+                case "bridge":
+                    lyrics = """4lr1ght, y0ur f1n4l ch4nc3... 4zk m3h 4nyth1ng... ^_^
+-# Can I ever afford a house?
+## N00000!!!!!! >:3
+-# W-What day is it today?
+## y0ur L4ZT!!!!!!! >;3
+-# How old is Taylor Swift?
+### 1 d0nt g1v3 4 d4mn, h4h4h4H4H4H4!!! >:P
+l0rd, v3r1t3h! m4zt3r 0f hum4n1ty!! :p
+1f th3z3 4r3 r34lly y0ur l4zt qu3zt10nz... y0u d0nt d3z3rv3 y0ur br41n at 4ll!!! X3"""
+
+
         case _:
-            lyrics = "z0rry, 1 d0n't kn0w th4t z0ng... O_o"
+            lyrics = "z0rry, 1 d0n't kn0w d4t z0ng... O_o"
     await msg.reply(lyrics)
 
 @bot.command()
