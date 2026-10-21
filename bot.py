@@ -292,7 +292,7 @@ h3 b3l0ngz t0 b4ckr00mz!!!! >_<"""
         case "gubby":
 
             if verse == "random":
-                verse = choice(["chorus", "verse 1"])
+                verse = choice(["chorus", "verse"])
 
             match verse:
 
