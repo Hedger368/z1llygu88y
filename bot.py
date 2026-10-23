@@ -11,7 +11,8 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 intents = discord.Intents.default()
 intents.message_content = True
 
-word_accepted_endings = [" ", ".", ":", ";", ",", "?", "!", "-", "(", '"', "'", "}", "]", "~"]
+word_accepted_endings = [" ", ".", ":", ";", ",", "?", "!", "-", ")", '"', "'", "}", "]", "~", "=", "+"]
+word_accepted_prefixes = [" ", "-", "~", "(", "[", "{", "=", "+", ]
 
 bot = commands.Bot(command_prefix="z!", intents=intents)
 
@@ -30,24 +31,30 @@ async def on_ready():
 def check_for_word(message, index, word, allow_s=False):
     message = message.lower()
     word = word.lower()
+    is_seperate = True
     if index > len(message) - len(word):
-        return False
+        is_seperate = False
     if message[index:index+len(word)] == word:
         if index == len(message) - len(word):
-            return True
+            is_seperate = True
         elif message[index+len(word)] in word_accepted_endings:
-            return True
+            is_seperate = True
         elif allow_s and message[index+len(word)] == "s":
             if index == (len(message) - len(word)) - 1:
-                return True
+                is_seperate = True
             elif message[index+len(word)+1] in word_accepted_endings:
-                return True
+                is_seperate = True
             else:
-                return False
+                is_seperate = False
         else:
-            return False
+            is_seperate = False
     else:
-        return False
+        is_seperate = False
+    if is_seperate:
+        if index != 0:
+            if message[index-1] not in word_accepted_prefixes:
+                is_seperate = False
+    return is_seperate
 
 def get_song_name(message):
     song = ""
