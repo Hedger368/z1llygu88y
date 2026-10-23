@@ -14,6 +14,8 @@ intents.message_content = True
 word_accepted_endings = [" ", ".", ":", ";", ",", "?", "!", "-", ")", '"', "'", "}", "]", "~", "=", "+"]
 word_accepted_prefixes = [" ", "-", "~", "(", "[", "{", "=", "+", ]
 
+ver = "z0.6.0"
+
 bot = commands.Bot(command_prefix="z!", intents=intents)
 
 @bot.event
@@ -436,6 +438,52 @@ async def pet(msg):
             reply = ":D"
         case 13:
             reply = "purrr :3"
+    await msg.reply(reply)
+
+@bot.command()
+async def version(msg):
+    await msg.reply(f'curr3tly 0n v3rz10n {ver}, m3w! :3')
+
+@bot.command()
+async def changelog(msg):
+    if len(msg.message.content) > 11:
+        requested_version = msg.message.content[11:].strip().lower()
+    else:
+        requested_version = "gub"
+    reply = f'ch4ng3l0g f0r upd4t3 {requested_version}:'
+    match requested_version:
+        case "z0.1.0":
+            reply += "\n- r3l34z3d d4 gubb3h!!\n- 4dd3d z!trans"
+        case "z0.2.0":
+            reply += "\n- 4dd3d z!sing\n- f1x3d z!trans br34k1ng w1th 3ll1pz3z"
+        case "z0.2.1":
+            reply += "\n- 4dd3d gubb3h z0ng t0 z!sing"
+        case "z0.2.2":
+            reply += "\n- f1x3d gubb3h z0ng 1n z!sing"
+        case "z0.2.3":
+            reply += "\n- b4ck3nd ch4ng3z wh1ch 4ll0w f0r m0r3 fr3qu3nt upd4t3z"
+        case "z0.3.0":
+            reply += "\n- 4dd3d 1nd1r3ct w0rd tr4nzl4t10nz t0 z!trans\n- 4dd3d m0r3 3m0t1c0nz t0 z!trans :3"
+        case "z0.3.1":
+            reply += "\n- c0d3 ch4ng3z t0 z!trans wh1ch f1x3d 1nd1r3ct w0rd tr4nzl4t10nz\n- 4dd3d m0r3 1nd1r3ct w0rd tr4nzl4t10nz t0 z!sing\n- 4dd3d zupp0rt f0r plur4lz f0r 1nd1r3ct w0rd tr4nzl4t10nz"
+        case "z0.3.2":
+            reply += "\n- 4dd3d 4ur4 f4rm3r 4nd l0rd v3r1ty z0ngz t0 z!sing"
+        case "z0.3.3":
+            reply += "\n- f1x3d f0rm1tt1ng bug f0r 4ur4 f4rm3r z0ng 1n z!sing"
+        case "z0.4.0":
+            reply += "\n- 4dd3d z!p3t c0mm4nd"
+        case "z0.5.0":
+            reply += "\n- c0mpl3t3ly 0v3rh4ul3d z!sing, 4ll0w1ng f0r d1ff3r3nt v3rz3z\n- 4dd3d m0r3 1nd1r3ct w0rd tr4nzl4t10nz"
+        case "z0.5.1":
+            reply += "\n- f1x3d v3rz3 z3l3ct10n n0t w0rk1ng\n- f1x3d 1nv4l1d v3rz3 c4z3 f0r l0rd v3r1ty z0ng"
+        case "z0.5.2":
+            reply += "\n- f1x3d gubb3h z0ng ch00z1ng 1nv4l1d v3rz3 1nzt34d 0f v3rz3 1 1f v3rz3 w4znt pr0v1d3d"
+        case "z0.5.3":
+            reply += "\n- f1x3d z!trans 1nd1r3ct w0rd tr4nzl4t10nz wr0ngly 4ct1v4t1ng 1f w0rdz w3r3 pr3f1x3d"
+        case "z0.6.0":
+            reply += "\n- 4dd3d z!version\n- 4dd3d z!changelog"
+        case _:
+            reply = "1nv4l1d v3rz10n, z0rry..."
     await msg.reply(reply)
 
 if __name__ == "__main__":
