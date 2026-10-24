@@ -14,7 +14,7 @@ intents.message_content = True
 word_accepted_endings = [" ", ".", ":", ";", ",", "?", "!", "-", ")", '"', "'", "}", "]", "~", "=", "+"]
 word_accepted_prefixes = [" ", "-", "~", "(", "[", "{", "=", "+", ]
 
-ver = "z0.6.0"
+ver = "z0.6.1"
 
 bot = commands.Bot(command_prefix="z!", intents=intents)
 
@@ -482,8 +482,19 @@ async def changelog(msg):
             reply += "\n- f1x3d z!trans 1nd1r3ct w0rd tr4nzl4t10nz wr0ngly 4ct1v4t1ng 1f w0rdz w3r3 pr3f1x3d"
         case "z0.6.0":
             reply += "\n- 4dd3d z!version\n- 4dd3d z!changelog"
+        case "z0.6.1":
+            reply += "\n- 4dd3d z!xmomer"
         case _:
             reply = "1nv4l1d v3rz10n, z0rry..."
+    await msg.reply(reply)
+
+@bot.command()
+async def xomer(msg):
+    user_sent = msg.author.name
+    if user_sent == "z9xomer":
+        reply = "h3ll0 z9, m3w! :3"
+    else:
+        reply = "l4rp."
     await msg.reply(reply)
 
 if __name__ == "__main__":
