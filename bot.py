@@ -483,7 +483,7 @@ async def changelog(msg):
         case "z0.6.0":
             reply += "\n- 4dd3d z!version\n- 4dd3d z!changelog"
         case "z0.6.1":
-            reply += "\n- 4dd3d z!xmomer"
+            reply += "\n- 4dd3d z!xomer"
         case _:
             reply = "1nv4l1d v3rz10n, z0rry..."
     await msg.reply(reply)
