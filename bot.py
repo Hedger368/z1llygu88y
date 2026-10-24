@@ -497,6 +497,11 @@ async def xomer(msg):
         reply = "l4rp."
     await msg.reply(reply)
 
+@bot.command()
+async def test(msg):
+    embed = discord.Embed(title="h3lp",color=discord.Color.blurple())
+    await msg.reply(embed=embed)
+
 if __name__ == "__main__":
     if not TOKEN:
         raise SystemExit("Set DISCORD_TOKEN in the environment or a .env file.")
