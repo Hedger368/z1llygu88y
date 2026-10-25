@@ -26,7 +26,7 @@ class Help(commands.HelpCommand):
             embed.add_field(name=command.name, value=command.help or "no desc", inline=False)
         await destination.send(embed=embed)
 
-bot = commands.Bot(command_prefix="z!", intents=intents, help_command=GubbyHelp())
+bot = commands.Bot(command_prefix="z!", intents=intents, help_command=Help())
 
 @bot.event
 async def on_ready():
