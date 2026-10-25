@@ -25,6 +25,15 @@ class Help(commands.HelpCommand):
                 continue
             embed.add_field(name=command.name, value=command.help or "no desc", inline=False)
         await destination.send(embed=embed)
+    
+    async def send_cog_help(self, cog):
+        await self.context.reply("cog help")
+
+    async def send_command_help(self, command):
+        await self.context.reply("command help")
+
+    async def send_group_help(self, group):
+        await self.context.reply("group help")
 
 bot = commands.Bot(command_prefix="z!", intents=intents, help_command=Help())
 
