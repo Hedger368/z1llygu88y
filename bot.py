@@ -11,29 +11,33 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 intents = discord.Intents.default()
 intents.message_content = True
 
+gubbycolour = 0xffa3f1
+
 word_accepted_endings = [" ", ".", ":", ";", ",", "?", "!", "-", ")", '"', "'", "}", "]", "~", "=", "+"]
 word_accepted_prefixes = [" ", "-", "~", "(", "[", "{", "=", "+", ]
 
-ver = "z0.6.1"
+ver = "z0.7.0"
 
 class Help(commands.HelpCommand):
     async def send_bot_help(self, mapping):
         destination = self.get_destination()
-        embed = discord.Embed(title="command help", color=discord.Color.green())
+        embed = discord.Embed(title="c0mm4nd h3lp!!!", color=gubbycolour)
         for command in self.context.bot.commands:
             if command.hidden:
                 continue
-            embed.add_field(name=command.name, value=command.help or "no desc", inline=False)
+            embed.add_field(name="z!"+command.name, value=command.help or "n0 g1v3n d3zcr1pt10n...", inline=False)
         await destination.send(embed=embed)
-        
-    async def send_cog_help(self, cog):
-        await self.context.message.reply("cog help")
 
     async def send_command_help(self, command):
-        await self.context.message.reply("command help")
+        destination = self.get_destination()
+        embed = discord.Embed(title=command.name, description=command.help or "n0 g1v3n d3zcr1pt10n...", color=gubbycolour)
+        await destination.send(embed=embed)
+
+    async def send_cog_help(self, cog):
+        return
 
     async def send_group_help(self, group):
-        await self.context.message.reply("group help")
+        return
 
 bot = commands.Bot(command_prefix="z!", intents=intents, help_command=Help())
 
@@ -508,6 +512,8 @@ async def changelog(msg):
             reply += "\n- 4dd3d z!version\n- 4dd3d z!changelog"
         case "z0.6.1":
             reply += "\n- 4dd3d z!xomer"
+        case "z0.7.0":
+            reply += "\n- r3w0rk3d z!h3lp t0 m4k3 1t n0t d4 d3f4ult d1zc0rd b0t h3lp m3zz4g3\n- 4dd3d d3zcr1pt10nz t0 c0mm4ndz"
         case _:
             reply = "1nv4l1d v3rz10n, z0rry..."
     await msg.reply(reply)
