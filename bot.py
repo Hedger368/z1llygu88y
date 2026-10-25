@@ -161,6 +161,7 @@ def z1ll1fy(m3zz4g3):
 
 @bot.command()
 async def trans(msg):
+    """1 w1ll tr4nzl4t3 n*rm4l t3xt 1nt0 z1lly t3xt!!"""
     if msg.message.reference and msg.message.reference.message_id:
         try:
             replied_message = await msg.channel.fetch_message(msg.message.reference.message_id)
@@ -175,6 +176,7 @@ async def trans(msg):
 
 @bot.command()
 async def sing(msg):
+    """1 w1ll z1ng 4 z0ng f0r y0u!!!"""
     song = get_song_name(msg.message.content)
     if len(msg.message.content) > (7+len(song)+1):
         verse = msg.message.content[7+len(song)+2:].strip().lower()
@@ -310,7 +312,7 @@ h3 b3l0ngz t0 b4ckr00mz!!!! >_<"""
 gubb3h s3rv3r, gubb3h l4n!! >_<
 gubb3h w1f1, gubb3h r4m :p
 gubb3h zt34k, gubb3h h4m!! X3
-az14n gubb3h fr0m j4p4n, n0w 1'm gubb1n w1th my fr13ndz!! >:3
+4z14n gubb3h fr0m j4p4n, n0w 1'm gubb1n w1th my fr13ndz!! >:3
 4ll d4 gubb13z g01ng h444m!!!!! X3"""
 
                 case "verse":
@@ -410,6 +412,7 @@ l0rd, v3r1t3h! m4zt3r 0f hum4n1ty!! :p
 
 @bot.command()
 async def pet(msg):
+    """p3t m3h!!!!"""
     choice = randint(1, 13)
     match choice:
         case 1:
@@ -442,10 +445,12 @@ async def pet(msg):
 
 @bot.command()
 async def version(msg):
+    """zhowz d4 curr3nt v3rz10n!!"""
     await msg.reply(f'curr3tly 0n v3rz10n {ver}, m3w! :3')
 
 @bot.command()
 async def changelog(msg):
+    """zh0wz d4 ch4ng3l0g f0r 4 g1v3n upd4t3!!!"""
     if len(msg.message.content) > 11:
         requested_version = msg.message.content[11:].strip().lower()
     else:
@@ -490,6 +495,7 @@ async def changelog(msg):
 
 @bot.command()
 async def xomer(msg):
+    """z9xomer"""
     user_sent = msg.author.name
     if user_sent == "z9xomer":
         reply = "h3ll0 z9, m3w! :3"
@@ -497,10 +503,17 @@ async def xomer(msg):
         reply = "l4rp."
     await msg.reply(reply)
 
-@bot.command()
-async def test(msg):
-    embed = discord.Embed(title="h3lp",color=discord.Color.blurple())
-    await msg.reply(embed=embed)
+class Help(commands.helpCommand):
+    async def send_bot_help(self, mapping):
+        if self.context.author.name != "z9xomer":
+            return
+        embed = discord.Embed(title="h3lp!",color=discord.Color.blue())
+        for cog, commands in mapping.items():
+            filtered = await self.filter_commands(commands, sort=True)
+            for command in filtered:
+                cmd = bot.get_command(command)
+                embed.add_field(name=command, value=cmd.help, inline=False)
+        await self.context.reply(embed=embed)
 
 if __name__ == "__main__":
     if not TOKEN:
