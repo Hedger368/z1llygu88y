@@ -16,23 +16,7 @@ word_accepted_prefixes = [" ", "-", "~", "(", "[", "{", "=", "+", ]
 
 ver = "z0.6.1"
 
-class Help(commands.helpCommand):
-    async def send_bot_help(self, mapping):
-        if self.context.author.name != "z9xomer":
-            return
-        embed = discord.Embed(title="h3lp!",color=discord.Color.blue())
-        for cog, commands in mapping.items():
-            filtered = await self.filter_commands(commands, sort=True)
-            for command in filtered:
-                cmd = bot.get_command(command)
-                embed.add_field(name=command, value=cmd.help, inline=False)
-        await self.context.reply(embed=embed)
-    async def send_command_help(self, mapping):
-        return
-    async def send_cog_help(self, mapping):
-        return
-
-bot = commands.Bot(command_prefix="z!", intents=intents, help_command=Help())
+bot = commands.Bot(command_prefix="z!", help_command=None, intents=intents)
 
 @bot.event
 async def on_ready():
