@@ -16,7 +16,14 @@ word_accepted_prefixes = [" ", "-", "~", "(", "[", "{", "=", "+", ]
 
 ver = "z0.6.1"
 
-bot = commands.Bot(command_prefix="z!", help_command=None, intents=intents)
+class GubbyHelp(commands.MinimalHelpCommand):
+    async def send_pages(self):
+        destination = self.get_destination()
+        for page in self.paginator.pages:
+            embed = discord.Embed(description=page)
+            await destination.send(embed=embed)
+
+bot = commands.Bot(command_prefix="z!", intents=intents, help_command=GubbyHelp())
 
 @bot.event
 async def on_ready():
@@ -493,7 +500,7 @@ async def changelog(msg):
             reply = "1nv4l1d v3rz10n, z0rry..."
     await msg.reply(reply)
 
-@bot.command()
+@bot.command(hidden=True)
 async def xomer(msg):
     """z9xomer"""
     user_sent = msg.author.name
