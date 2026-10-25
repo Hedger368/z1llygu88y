@@ -514,6 +514,10 @@ class Help(commands.helpCommand):
                 cmd = bot.get_command(command)
                 embed.add_field(name=command, value=cmd.help, inline=False)
         await self.context.reply(embed=embed)
+    async def send_command_help(self, mapping):
+        return
+    async def send_cog_help(self, mapping):
+        return
 
 if __name__ == "__main__":
     if not TOKEN:
