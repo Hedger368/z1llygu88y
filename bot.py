@@ -25,7 +25,7 @@ class Help(commands.HelpCommand):
                 continue
             embed.add_field(name=command.name, value=command.help or "no desc", inline=False)
         await destination.send(embed=embed)
-    
+        
     async def send_cog_help(self, cog):
         await self.context.message.reply("cog help")
 
