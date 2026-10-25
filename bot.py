@@ -16,14 +16,14 @@ word_accepted_prefixes = [" ", "-", "~", "(", "[", "{", "=", "+", ]
 
 ver = "z0.6.1"
 
-class GubbyHelp(commands.HelpCommand):
+class Help(commands.HelpCommand):
     async def send_bot_help(self, mapping):
         destination = self.get_destination()
         embed = discord.Embed(title="command help", color=discord.Color.green())
         for command in self.context.bot.commands:
             if command.hidden:
                 continue
-            embed.add_field(name=command, value=command.help, inline=False)
+            embed.add_field(name=command.name, value=command.help or "no desc", inline=False)
         await destination.send(embed=embed)
 
 bot = commands.Bot(command_prefix="z!", intents=intents, help_command=GubbyHelp())
