@@ -19,19 +19,19 @@ word_accepted_prefixes = [" ", "-", "~", "(", "[", "{", "=", "+", ]
 ver = "z0.7.0"
 
 class Help(commands.HelpCommand):
+    def __init(self):
+        super().__init__(command_attrs={"brief": "zh0wz d1z m3zz4g3!!!"})
     async def send_bot_help(self, mapping):
-        destination = self.get_destination()
         embed = discord.Embed(title="c0mm4nd h3lp!!!", color=gubbycolour)
         for command in self.context.bot.commands:
             if command.hidden:
                 continue
             embed.add_field(name="z!"+command.name, value=command.help or "n0 g1v3n d3zcr1pt10n...", inline=False)
-        await destination.send(embed=embed)
+        await self.context.message.reply(embed=embed)
 
     async def send_command_help(self, command):
-        destination = self.get_destination()
         embed = discord.Embed(title=command.name, description=command.help or "n0 g1v3n d3zcr1pt10n...", color=gubbycolour)
-        await destination.send(embed=embed)
+        await self.context.message.reply(embed=embed)
 
     async def send_cog_help(self, cog):
         return
