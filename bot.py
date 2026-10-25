@@ -27,13 +27,13 @@ class Help(commands.HelpCommand):
         await destination.send(embed=embed)
     
     async def send_cog_help(self, cog):
-        await self.context.reply("cog help")
+        await self.context.message.reply("cog help")
 
     async def send_command_help(self, command):
-        await self.context.reply("command help")
+        await self.context.message.reply("command help")
 
     async def send_group_help(self, group):
-        await self.context.reply("group help")
+        await self.context.message.reply("group help")
 
 bot = commands.Bot(command_prefix="z!", intents=intents, help_command=Help())
 
