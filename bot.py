@@ -19,9 +19,12 @@ ver = "z0.6.1"
 class GubbyHelp(commands.MinimalHelpCommand):
     async def send_pages(self):
         destination = self.get_destination()
-        for page in self.paginator.pages:
-            embed = discord.Embed(description=page)
-            await destination.send(embed=embed)
+        command_list = [command.name for command in bot.commands]
+        embed = discord.Embed(title="c0mm4nd h3lp!!", color=discord.Color.green())
+        for command in command_list:
+            embed.add_field(name=command, decription=command.help, inline=False)
+        await destination.send(embed=embed)
+
 
 bot = commands.Bot(command_prefix="z!", intents=intents, help_command=GubbyHelp())
 
