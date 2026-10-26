@@ -198,15 +198,18 @@ async def trans(msg):
         await msg.reply("y0u d1dn't r3ply t0 4nyth1ng... :p")
 
 @bot.command()
-async def sing(msg):
+async def sing(msg, *args):
     """1 w1ll z1ng 4 z0ng f0r y0u!!!"""
-    song = get_song_name(msg.message.content)
-    if len(msg.message.content) > (7+len(song)+1):
-        verse = msg.message.content[7+len(song)+2:].strip().lower()
-    else:
+    if len(args) == 0:
+        await msg.reply("r3m3mb3r, z!sing g03z l1k3 z!sing [z0ng] [v3rz3]...")
+        return
+    if len(args) == 1:
+        song = args[0]
         verse = "random"
+    else:
+        song = " ".join(args[0:-2])
+        verse = args[-1]
     match song:
-
 
         case "verity":
 
@@ -428,6 +431,38 @@ l0rd, v3r1t3h! m4zt3r 0f hum4n1ty!! :p
                 case _:
                     lyrics = "1m 4 m4zt3r 0f 4 l0t 0f th1ngz, but n0t d1z, z0rry..."
 
+        case "homer" | "homer let the barts out":
+
+            if verse == "random":
+                verse = choice(["chorus", "verse 1", "chorus 2", "outro"])
+
+            match verse:
+
+                case "chorus":
+                    lyrics = """h0m3r l3t d4 b4rtz 0ut!! :3
+h0m3r l3t d4 b4rtz 0ut!!!! > ~ <
+h3 0p3n3d up d4 d00r (h3 0p3n3d up d4 d00r)!! :p
+th3y st4rt3d runn1ng, th3y st4rt3d runn1ng!!! X3
+h0m3r l3t d4 b4rtz 0ut! ;3"""
+
+                case "verse 1":
+                    lyrics = """h3 z41d h3 h4d c0ntr0l!! ^ - ^
+h3 z41d h3 h4d c0ntr0l!!! XP
+h3 d1d n0t h4v3 c0ntr0l!! o_O
+h3 d1d n0t h4v3 c0ntr0l!!!! > ~ <"""
+
+                case "chorus 2":
+                    lyrics = """h0m3r l3t d4 b4rtz 0ut (4nd th3yr3 n3v3r c0m1ng b4ck!!) :3
+h0m3r l3t d4 b4rtz 0ut (n0w th3y 4ll up 1n d4 tr4ck!!! :p)
+h0m3r l3t d4 b4rtz 0ut (4nd h3 c4nt d0 n0th1ng n0w!! >:3)
+h0m3r l3t d4 b4rtz 0ut (h0m3r t00k d4t l z0m3h0w!! ^_^)"""
+
+                case "outro":
+                    lyrics = """d4 d00r 1z 0p3n, d4 b4rtz 4r3 fr33!! > ~ <
+h0m3r zt4nd1ng th3r3, 1n d1zb3l13f!!! XP"""
+
+                case _:
+                    lyrics = """h0m3r d03znt kn0w d4t v3rz3, z0rry..."""
 
         case _:
             lyrics = "z0rry, 1 d0n't kn0w d4t z0ng... O_o"
@@ -472,7 +507,7 @@ async def version(msg):
     await msg.reply(f'curr3tly 0n v3rz10n {ver}, m3w! :3')
 
 @bot.command()
-async def changelog(msg):
+async def changelog(msg, *args):
     """zh0wz d4 ch4ng3l0g f0r 4 g1v3n upd4t3!!!"""
     if len(msg.message.content) > 11:
         requested_version = msg.message.content[11:].strip().lower()
@@ -514,6 +549,8 @@ async def changelog(msg):
             reply += "\n- 4dd3d z!xomer"
         case "z0.7.0":
             reply += "\n- r3w0rk3d z!h3lp t0 m4k3 1t n0t d4 d3f4ult d1zc0rd b0t h3lp m3zz4g3\n- 4dd3d d3zcr1pt10nz t0 c0mm4ndz"
+        case "z0.7.1":
+            reply += "\n- 4dd3d h0m3r l3t d4 b4rtz 0ut z0ng t0 z!sing\n- 1mpr0v3d c0d3 f0r z!sing 4nd z!changelog"
         case _:
             reply = "1nv4l1d v3rz10n, z0rry..."
     await msg.reply(reply)
