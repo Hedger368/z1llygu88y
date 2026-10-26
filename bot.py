@@ -16,7 +16,7 @@ gubbycolour = 0xffa3f1
 word_accepted_endings = [" ", ".", ":", ";", ",", "?", "!", "-", ")", '"', "'", "}", "]", "~", "=", "+"]
 word_accepted_prefixes = [" ", "-", "~", "(", "[", "{", "=", "+", ]
 
-ver = "z0.7.0"
+ver = "z0.7.1"
 
 class Help(commands.HelpCommand):
     def __init(self):
@@ -207,8 +207,8 @@ async def sing(msg, *args):
         song = " ".join(args[0:]).strip().lower()
         verse = "random"
     else:
-        song = " ".join(args[0:-1])
-        verse = args[-1]
+        song = " ".join(args[1:-1]).strip().lower()
+        verse = args[-1].strip().lower()
     match song:
 
         case "verity":
