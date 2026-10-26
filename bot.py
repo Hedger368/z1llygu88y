@@ -204,10 +204,10 @@ async def sing(msg, *args):
         await msg.reply("r3m3mb3r, z!sing g03z l1k3 z!sing + [z0ng] [v3rz3] 0r z!sing [z0ng]...")
         return
     if args[0] != "+":
-        song = args[0:-1]
+        song = args[0:]
         verse = "random"
     else:
-        song = " ".join(args[0:-2])
+        song = " ".join(args[0:-1])
         verse = args[-1]
     match song:
 
